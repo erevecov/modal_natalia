@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+        .cot_or_nv:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Abrir modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div id="modal_body_1">
+                    <form>
+                        <fieldset>
+                        <legend style="text-align: center;">Datos de usuario</legend>
+                            <div class="form-group">
+                                <label for="rut1">Rut</label>
+                                <input type="text" class="form-control" id="rut1" aria-describedby="rutHelp" placeholder="Enter Rut" value="18.682.022-3" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="name1">Nombre</label>
+                                <input type="text" class="form-control" id="name1" aria-describedby="nameHelp" placeholder="Enter Name" value="Eduardo reveco">
+                            </div>
+                            <div class="form-group">
+                                <label for="email1">Email</label>
+                                <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Enter email" value="desarrollo@michcom.cl">
+                            </div>
+                            <div class="form-group">
+                                <label for="password1">Password</label>
+                                <input type="password" class="form-control" id="password1" placeholder="*********">
+                            </div>
+                        </fieldset>
+                    </form>
+
+                    <legend style="text-align: center;">Cotizaciones y notas de venta</legend>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Cotizacion 3
+                            <span class="badge badge-primary badge-pill cot_or_nv" data-name="cotizacion 3">
+                                ver mas
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Cotizacion 2
+                            <span class="badge badge-primary badge-pill cot_or_nv" data-name="cotizacion 2">
+                                ver mas
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Cotizacion 1
+                            <span class="badge badge-primary badge-pill cot_or_nv" data-name="cotizacion 1">
+                                ver mas
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div id="modal_body_2"></div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script>
+        async function main() {
+            Array.from(document.querySelectorAll('.cot_or_nv')).forEach(el=> {
+                el.addEventListener('click', (elCotOrNv)=> {
+                    document.querySelector('#modal_body_1').style.display = 'none'
+
+                    document.querySelector('#modal_body_2').style.display = 'block'
+
+                    let data = elCotOrNv.target.dataset
+
+                    document.querySelector('#modal_body_2').innerHTML = `
+                        <button id="goBack" class="btn btn-primary">Volver atras</button>
+
+                        <h1 style="text-align: center;">${data.name}</h1>
+                    `
+
+                    document.querySelector('#goBack').addEventListener('click', ()=> {
+                        document.querySelector('#modal_body_1').style.display = 'block'
+                        document.querySelector('#modal_body_2').style.display = 'none'
+                    })
+
+                })
+            })
+        }
+
+        main()
+    </script>
+</body>
+</html>
